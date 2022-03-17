@@ -99,6 +99,13 @@ app.get('/account', verifyIfExistsAccountCPF, (request, response) => {
   return response.json(customer);
 });
 
+app.get('/balance', verifyIfExistsAccountCPF, (request, response) => {
+  const { customer } = request;
+  const balance = getBalance(customer.statement);
+
+  return response.json(balance);
+});
+
 app.put('/account', verifyIfExistsAccountCPF, (request, response) => {
   const { name } = request.body;
   const { customer } = request;
